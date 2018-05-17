@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Movies</title>
+</head>
+<body>
+    <form method="POST">
+
+        <input id="id_movie_title" name="movie_title" placeholder="Type a movie title here and press ENTER"/>
+
+    </form>
+
+    {% if movie_list %}
+        <ul>
+
+            {% for movie in movie_list %}
+
+                <li>movie.title</li>
+
+            {% endfor %}
+
+        </ul>
+
+    {% else %}
+
+        <p>No movies have been added yet.</p>
+
+    {% endif %}
+</body>
+</html>
