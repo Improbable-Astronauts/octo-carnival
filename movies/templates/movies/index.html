@@ -4,27 +4,30 @@
     <title>My Movies</title>
 </head>
 <body>
+
     <form method="POST">
 
         <input id="id_movie_title" name="movie_title" placeholder="Type a movie title here and press ENTER"/>
-
+        {% csrf_token %}
     </form>
 
-    {% if movie_list %}
-        <ul>
+    <h1>My Favorite Movies</h1>
 
-            {% for movie in movie_list %}
+   <!--  {% if movie_list %} -->
+        <ul id="id_movies_list">
+
+      <!--       {% for movie in movie_list %}
 
                 <li>movie.title</li>
 
-            {% endfor %}
+            {% endfor %} -->
 
         </ul>
 
-    {% else %}
+   <!--  {% else %} -->
 
         <p>No movies have been added yet.</p>
-
-    {% endif %}
+<!--
+    {% endif %} -->
 </body>
 </html>

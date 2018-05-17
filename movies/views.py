@@ -6,8 +6,10 @@ def index(request):
     """ Creates an HTTP response for requests made to the index route. """
 
     all_movies = Movie.objects.all()
+
     if len(all_movies) > 0:
         context = {'movie_list': all_movies, }
+
     else:
         context = {}
 

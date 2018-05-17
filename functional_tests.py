@@ -1,4 +1,6 @@
 from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+import time
 import unittest
 
 class NewVisitorTest(unittest.TestCase):
@@ -21,18 +23,35 @@ class NewVisitorTest(unittest.TestCase):
         self.browser.get('http://localhost:8000/movies/')
 
         # The page title and header mention to-do movies
+
         self.assertIn("Movies", self.browser.title)
-        self.fail('Finish the test!')
+        header_text = self.browser.find_element_by_tag_name('h1').text
+        self.assertIn('Movies', header_text)
 
         # Jesse is immediately invited to enter a movie title
 
+        inputbox = self.browser.find_element_by_id('id_movie_title')
+        self.assertEqual(inputbox.get_attribute('placeholder'), 'Type a movie title here and press ENTER')
+
         # Jesse types "John Wick" into a text box (because it's an awesome movie.)
+
+        inputbox.send_keys('John Wick')
 
         # When they hit enter, the page updates, and now the page lists
         # "1: John Wick" as an item in the "My Favorite Movies list"
 
+        inputbox.send_keys(Keys.ENTER)
+        time.sleep(1)
+
+        movies_list = self.browser.find_element_by_id('id_movies_list')
+        self.assertTrue(
+            any(row.text == 'John Wick' for row in rows)
+            )
+
         # There is still a text box inviting Jesse to add another movie.
         # They enter "Constantine" (Jesse may be into Keanu Reeves.)
+        self.fail('Finish the test!')
+
 
         # The page updates again, and now shows both movies on their list.
 
