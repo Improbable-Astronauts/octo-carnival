@@ -1,10 +1,10 @@
+from django.test import LiveServerTestCase
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
-import unittest
 
 
-class NewVisitorTest(unittest.TestCase):
+class NewVisitorTest(LiveServerTestCase):
 
     def setUp(self):
         """ Defines setup operations for the NewVisitorTest class. """
@@ -26,7 +26,7 @@ class NewVisitorTest(unittest.TestCase):
         # Jesse has heard about a movie watch-list app, and goes
         # to check out it's homepage
 
-        self.browser.get('http://localhost:8000/movies/')
+        self.browser.get(self.live_server_url + "/movies/")
 
         # The page title and header mention to-do movies
 
@@ -72,6 +72,3 @@ class NewVisitorTest(unittest.TestCase):
         # Jesse visits that URL - their movie list is still there.
 
         # Satisfied, they go back to sleep.
-
-if __name__ == "__main__":
-    unittest.main(warnings='ignore')
