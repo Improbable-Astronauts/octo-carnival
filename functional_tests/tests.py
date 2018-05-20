@@ -21,7 +21,7 @@ class NewVisitorTest(LiveServerTestCase):
         rows = movies_list.find_elements_by_tag_name('li')
         self.assertIn(row_text, [row.text for row in rows])
 
-    def test_can_start_a_list_and_retrieve_it_later(self):
+    def test_can_start_a_movies_list_and_retrieve_it_later(self):
 
         # Jesse has heard about a movie watch-list app, and goes
         # to check out it's homepage

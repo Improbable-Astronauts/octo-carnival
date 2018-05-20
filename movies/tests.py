@@ -32,6 +32,12 @@ class HomePageTest(TestCase):
         self.assertIn('Jumanji', response.content.decode())
         self.assertIn('Amelie', response.content.decode())
 
+    def test_only_saves_movies_when_necessary(self):
+
+        self.client.get('/movies/')
+        self.assertEqual(Movie.objects.count(), 0)
+
+
 class MovieModelTest(TestCase):
 
     def test_saving_and_retrieving_items(self):
