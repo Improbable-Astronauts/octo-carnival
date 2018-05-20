@@ -1,16 +1,15 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.http import HttpResponse, Http404
 from .models import Movie
+
 
 def index(request):
     """ Creates an HTTP response for requests made to the index route. """
 
-    all_movies = Movie.objects.all()
+    if request.method == 'POST':
+        Movie.objects.create(title=request.POST['movie_title'])
+        return redirect('/movies/')
 
-    if len(all_movies) > 0:
-        context = {'movie_list': all_movies, }
+    movies = Movie.objects.all()
 
-    else:
-        context = {}
-
-    return render(request, 'movies/index.html', context)
+    return render(request, 'movies/index.html', {'movie_list': movies})

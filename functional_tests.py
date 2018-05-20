@@ -3,6 +3,7 @@ from selenium.webdriver.common.keys import Keys
 import time
 import unittest
 
+
 class NewVisitorTest(unittest.TestCase):
 
     def setUp(self):
@@ -14,6 +15,11 @@ class NewVisitorTest(unittest.TestCase):
         """ Defines tear-down operations for the NewVisitorTest class. """
 
         self.browser.quit()
+
+    def check_for_row_in_list_table(self, row_text):
+        movies_list = self.browser.find_element_by_id('id_movies_list')
+        rows = movies_list.find_elements_by_tag_name('li')
+        self.assertIn(row_text, [row.text for row in rows])
 
     def test_can_start_a_list_and_retrieve_it_later(self):
 
@@ -43,22 +49,26 @@ class NewVisitorTest(unittest.TestCase):
         inputbox.send_keys(Keys.ENTER)
         time.sleep(1)
 
-        movies_list = self.browser.find_element_by_id('id_movies_list')
-        self.assertTrue(
-            any(row.text == 'John Wick' for row in rows)
-            )
+        self.check_for_row_in_list_table('John Wick')
 
         # There is still a text box inviting Jesse to add another movie.
         # They enter "Constantine" (Jesse may be into Keanu Reeves.)
-        self.fail('Finish the test!')
 
+        inputbox = self.browser.find_element_by_id('id_movie_title')
+        inputbox.send_keys('Constantine')
+        inputbox.send_keys(Keys.ENTER)
+        time.sleep(1)
 
         # The page updates again, and now shows both movies on their list.
+
+        movies_list = self.browser.find_element_by_id('id_movies_list')
+        rows = movies_list.find_elements_by_tag_name('li')
+        self.assertIn('Constantine', [row.text for row in rows])
 
         # Jesse wonders whether the site will remember their list.  Then
         # they see that the site has generated a unique URL for them --
         # there is some explanatory text to that effect.
-
+        self.fail('Finish the test!')
         # Jesse visits that URL - their movie list is still there.
 
         # Satisfied, they go back to sleep.
