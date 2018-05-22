@@ -13,11 +13,3 @@ def index(request):
     movies = Movie.objects.all()
 
     return render(request, 'movies/index.html', {'movie_list': movies})
-
-## Commenting this view out until we decide as a group to reimplement separate lists
-
-# def view_list(request):
-
-#     movies = Movie.objects.all()
-
-#     return render(request, 'movies/list.html', {'movie_list': movies})

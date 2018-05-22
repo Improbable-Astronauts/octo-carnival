@@ -57,23 +57,3 @@ class MovieModelTest(TestCase):
         second_saved_movie = saved_movies[1]
         self.assertEqual(first_saved_movie.title, 'The first (ever) movie title')
         self.assertEqual(second_saved_movie.title, 'A sequel')
-
-## Commenting these out until we start using multiple lists in our projects
-
-# class ListViewTest(TestCase):
-
-#     def test_displays_all_movies(self):
-
-#         Movie.objects.create(title='Galaxy Quest')
-#         Movie.objects.create(title='Clue')
-
-#         response = self.client.get('/movies/lists/the-only-list-in-the-world/')
-
-#         self.assertContains(response, 'Galaxy Quest')
-#         self.assertContains(response, 'Clue')
-
-#     def test_uses_list_template(self):
-
-#         response = self.client.get('/movies/lists/the-only-list-in-the-world/')
-
-#         self.assertTemplateUsed(response, 'movies/list.html')
