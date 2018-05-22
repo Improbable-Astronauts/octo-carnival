@@ -15,5 +15,22 @@
         {% csrf_token %}
     </form>
 
+    {% if movie_list %}
+        <ul id="id_movies_list">
+
+            {% for movie in movie_list %}
+
+                <li>{{ movie.title }}</li>
+
+            {% endfor %}
+
+        </ul>
+
+    {% else %}
+
+        <p>No movies have been added yet.</p>
+
+    {% endif %}
+
 </body>
 </html>

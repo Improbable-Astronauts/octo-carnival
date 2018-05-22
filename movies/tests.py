@@ -20,7 +20,17 @@ class HomePageTest(TestCase):
 
         response = self.client.post('/movies/', data={'movie_title': 'A Movie Title'})
         self.assertEqual(response.status_code, 302)
-        self.assertEqual(response['location'], '/movies/lists/the-only-list-in-the-world')
+        self.assertEqual(response['location'], '/movies/')
+
+    def test_displays_all_movies(self):
+
+        Movie.objects.create(title='Galaxy Quest')
+        Movie.objects.create(title='Clue')
+
+        response = self.client.get('/movies/')
+
+        self.assertContains(response, 'Galaxy Quest')
+        self.assertContains(response, 'Clue')
 
     def test_only_saves_movies_when_necessary(self):
 
@@ -48,21 +58,22 @@ class MovieModelTest(TestCase):
         self.assertEqual(first_saved_movie.title, 'The first (ever) movie title')
         self.assertEqual(second_saved_movie.title, 'A sequel')
 
+## Commenting these out until we start using multiple lists in our projects
 
-class ListViewTest(TestCase):
+# class ListViewTest(TestCase):
 
-    def test_displays_all_movies(self):
+#     def test_displays_all_movies(self):
 
-        Movie.objects.create(title='Galaxy Quest')
-        Movie.objects.create(title='Clue')
+#         Movie.objects.create(title='Galaxy Quest')
+#         Movie.objects.create(title='Clue')
 
-        response = self.client.get('/movies/lists/the-only-list-in-the-world/')
+#         response = self.client.get('/movies/lists/the-only-list-in-the-world/')
 
-        self.assertContains(response, 'Galaxy Quest')
-        self.assertContains(response, 'Clue')
+#         self.assertContains(response, 'Galaxy Quest')
+#         self.assertContains(response, 'Clue')
 
-    def test_uses_list_template(self):
+#     def test_uses_list_template(self):
 
-        response = self.client.get('/movies/lists/the-only-list-in-the-world/')
+#         response = self.client.get('/movies/lists/the-only-list-in-the-world/')
 
-        self.assertTemplateUsed(response, 'movies/list.html')
+#         self.assertTemplateUsed(response, 'movies/list.html')
