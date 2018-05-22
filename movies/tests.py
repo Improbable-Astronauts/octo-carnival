@@ -22,16 +22,6 @@ class HomePageTest(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response['location'], '/movies/lists/the-only-list-in-the-world')
 
-    def test_displays_all_movie_titles(self):
-
-        Movie.objects.create(title='Jumanji')
-        Movie.objects.create(title='Amelie')
-
-        response = self.client.get('/movies/')
-
-        self.assertIn('Jumanji', response.content.decode())
-        self.assertIn('Amelie', response.content.decode())
-
     def test_only_saves_movies_when_necessary(self):
 
         self.client.get('/movies/')
@@ -57,3 +47,22 @@ class MovieModelTest(TestCase):
         second_saved_movie = saved_movies[1]
         self.assertEqual(first_saved_movie.title, 'The first (ever) movie title')
         self.assertEqual(second_saved_movie.title, 'A sequel')
+
+
+class ListViewTest(TestCase):
+
+    def test_displays_all_movies(self):
+
+        Movie.objects.create(title='Galaxy Quest')
+        Movie.objects.create(title='Clue')
+
+        response = self.client.get('/movies/lists/the-only-list-in-the-world/')
+
+        self.assertContains(response, 'Galaxy Quest')
+        self.assertContains(response, 'Clue')
+
+    def test_uses_list_template(self):
+
+        response = self.client.get('/movies/lists/the-only-list-in-the-world/')
+
+        self.assertTemplateUsed(response, 'movies/list.html')
