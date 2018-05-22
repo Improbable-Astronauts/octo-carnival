@@ -22,3 +22,13 @@
     - Javascript
     - HTML/CSS
     - Postgres
+    
+## Setting up your development environment for local testing
+
+    - Ensure dependencies are available (activate environment as necessary)
+    - clone the repository
+    - change to the directory with manage.py in it
+    - run `python manage.py migrate` to create database tables
+    - run `python manage.py runserver`
+    - open browser to http://localhost:8000/movies
+    
