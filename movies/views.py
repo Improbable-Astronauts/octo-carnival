@@ -8,13 +8,8 @@ def index(request):
 
     if request.method == 'POST':
         Movie.objects.create(title=request.POST['movie_title'])
-        return redirect('/movies/lists/the-only-list-in-the-world')
-
-    return render(request, 'movies/index.html')
-
-
-def view_list(request):
+        return redirect('/movies/')
 
     movies = Movie.objects.all()
 
-    return render(request, 'movies/list.html', {'movie_list': movies})
+    return render(request, 'movies/index.html', {'movie_list': movies})
