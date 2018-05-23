@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movie Search</title>
+</head>
+<body>
+    <h2>Movie Search Results</h2>
+
+    <div id="id_movie_results">
+
+    {% if movie_results %}
+
+        <table id="id_movie_table">
+        {% for movie in movie_results %}
+            <tr>
+                <td>
+                    <a href="/detail/{{movie.imdb_id}}">
+                        <img src="{{ movie.img_url}}">
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h4>{{movie.title}}</h4>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h5>Released: {{movie.release_date}}</h5>
+                </td>
+            </tr>
+        {% endfor %}
+        </table>
+
+    {% else %}
+
+        <p id="id_no_results">No results found. <a href='/'>Search again?</a></p>
+
+    {% endif %}
+    </div>
+</body>
+</html>

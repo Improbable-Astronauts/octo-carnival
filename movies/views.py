@@ -20,6 +20,6 @@ def search(request):
     return render(request, 'movies/search.html')
 
 
-def detail(request, movie_id):
+def detail(request):
 
-    pass
+    return HttpResponse("<h1>Movie Detail View</h1>")
