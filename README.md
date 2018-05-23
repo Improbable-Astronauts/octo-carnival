@@ -33,4 +33,3 @@
     - open browser to http://localhost:8000/
     - run all tests with `python manage.py test`
     - run unit tests only with `python manage.py test movies`
-
