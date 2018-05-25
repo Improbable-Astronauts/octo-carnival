@@ -22,7 +22,7 @@
     - Javascript
     - HTML/CSS
     - Postgres
-    
+
 ## Setting up your development environment for local testing
 
     - Ensure dependencies are available (activate environment as necessary)
@@ -31,4 +31,16 @@
     - run `python manage.py migrate` to create database tables
     - run `python manage.py runserver`
     - open browser to http://localhost:8000/movies
-    
+
+## To contribute to the project
+
+- Follow the setup instructions above
+- Assign yourself to an open issue
+- Make sure your local repo is up-to-date
+    `git pull origin master`
+- From master, create a new feature branch
+    `git checkout -b fix-issue-9`
+- make changes in feature branch
+- open a pull request for team review
+- after getting at least one approval, merge your branch and close the issue (if completely resolved)
+
