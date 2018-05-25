@@ -37,11 +37,15 @@
 - create a virtual environment for this project - we recommend using venv
 
     `$ python -m venv myvenv`
+
     (this should create a directory called myvenv inside the project directory)
 - activate your virtual environment
 
     `$ source myvenv/bin/activate`
+
     (you should see (myvenv) at the beginning of your command line prompt now)
+
+    - Windows users: your path will most likely be `source myvenv/Scripts/activate`
 - add the name of your virtual environment to the .gitignore file
 
     `$ echo "myvenv/" >> .gitignore`
