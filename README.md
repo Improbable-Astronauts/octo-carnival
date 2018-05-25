@@ -1,18 +1,38 @@
 # Octo-Carnival - A Django and TDD Practice Project
 
-## Goals for this project:
+## Goals for the current sprint:
 
-    - 1 model - a movies table that stores a movie title
-    - 1 view - a template that contains the following:
+- 1 model - a movies table that stores a movie title, poster_url, year, imdbid, length, and movie_rating
 
+- 3 views - a main page, search result page, and movie detail page
+
+    - main page should display:
         - title and header that indicate this is an app to make a movie list
         - an input box with placeholder to prompt users to add a movie title
-        - a button that handles creating a Movie object with the user input
-        - a list that displays either all the movies currently entered, or a
+        - a list that displays either all the movies currently entered for a
         a message that alerts that user that no movies have been added yet.
-        - the movies list should be persistent since its contents come from the
-        database.
-    - functional and unit tests with at least 50% test coverage
+        - the movies list should be persistent since its contents come from the database.
+        - a button that POSTS a search query to OMDB, returning a list of searchterm results, then redirects the user to the search view.
+            - future optimization: if only one result is found, the search view can be skipped - send a GET request for that result, and redirect the user to the movie detail page.
+
+    - search result page should display:
+        - a title and header that indicate this is the search result page
+            - heading should also contain the user's search term
+        - a list of information related to each result returned from OMDB
+            - for each movie, display the following:
+                - image of the movie poster
+                - movie title
+                - year movie was released
+                - a link to the movie detail page for that film
+        - clicking a link on this page will send a GET request to OMDB for that specific film, then redirect to the appropriate movie detail page
+            - future optimization: check db for movie first - then send request to omdb
+
+    - movie detail page should display:
+        - url for movie details should follow this format `detail/<imdb_id>`
+        - all details needed to create a new movie object should be displayed on this page: movie poster url, title, year, imdb_id, length, and movie_rating
+        - a button that creates a new Movie object with the relevant fields, then redirects the user to the main page, where they will see the newest addition in the list of movies.
+
+- functional and unit tests for all new additions to the app
 
 ## Technology used:
 
