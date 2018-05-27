@@ -22,7 +22,7 @@
     - Javascript
     - HTML/CSS
     - Postgres
-    
+
 ## Setting up your development environment for local testing
 
     - Ensure dependencies are available (activate environment as necessary)
@@ -30,5 +30,6 @@
     - change to the directory with manage.py in it
     - run `python manage.py migrate` to create database tables
     - run `python manage.py runserver`
-    - open browser to http://localhost:8000/movies
-    
+    - open browser to http://localhost:8000/
+    - run all tests with `python manage.py test`
+    - run unit tests only with `python manage.py test movies`
