@@ -13,3 +13,13 @@ def index(request):
     movies = Movie.objects.all()
 
     return render(request, 'movies/index.html', {'movie_list': movies})
+
+
+def search(request):
+
+    return render(request, 'movies/search.html')
+
+
+def detail(request):
+
+    return HttpResponse("<h1>Movie Detail View</h1>")
