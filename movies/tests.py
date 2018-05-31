@@ -20,7 +20,7 @@ class HomePageTest(TestCase):
 
         response = self.client.post('/', data={'movie_title': 'A Movie Title'})
         self.assertEqual(response.status_code, 302)
-        self.assertEqual(response['location'], '/movies/')
+        self.assertEqual(response['location'], '/')
 
     def test_displays_all_movies(self):
 
