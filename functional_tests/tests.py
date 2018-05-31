@@ -31,6 +31,10 @@ class NewVisitorTest(LiveServerTestCase):
                     raise e
                 time.sleep(0.5)
 
+    def wait_for_row_in_results(self, row_text):
+        time.sleep(5)
+        return
+
     def test_can_start_a_movies_list_for_one_user(self):
 
         # Jesse has heard about a movie watch-list app, and goes
@@ -52,11 +56,22 @@ class NewVisitorTest(LiveServerTestCase):
         # Jesse types "John Wick" into a text box (because it's an awesome movie.)
 
         inputbox.send_keys('John Wick')
-
-        # When they hit enter, the page updates, and now the page lists
-        # "1: John Wick" as an item in the "My Favorite Movies list"
-
         inputbox.send_keys(Keys.ENTER)
+
+        self.wait_for_row_in_results('John Wick')
+        # A results page opens at /search with a list of movies for Jesse to pick from
+        self.assertIn("Movie Search", self.browser.title)
+        header_text = self.browser.find_element_by_tag_name('h2').text
+        self.assertIn('Movie Search Results', header_text)
+
+        # Jesse clicks the radio button for the first movie (from 2014)
+        radio_button = self.browser.find_element_by_id('John Wick')
+        radio_button.click()
+
+        submit_button = self.browser.find_element_by_id('submit_button')
+        submit_button.click()
+        # When they click the "Save Movie" button, the page updates and now the page lists
+        # "1: John Wick" as an item in the "My Favorite Movies list"
 
         self.wait_for_row_in_list_table('John Wick')
 
@@ -66,6 +81,18 @@ class NewVisitorTest(LiveServerTestCase):
         inputbox = self.browser.find_element_by_id('id_movie_title')
         inputbox.send_keys('Constantine')
         inputbox.send_keys(Keys.ENTER)
+
+        self.wait_for_row_in_results('Constantine')
+        # A results page opens at /search with another list of movies for Jesse to pick from
+
+        # Jesse clicks the radio button for Constantine
+        radio_button = self.browser.find_element_by_id('Constantine')
+        radio_button.click()
+
+        submit_button = self.browser.find_element_by_id('submit_button')
+        submit_button.click()
+        # When they click the "Save Movie" button, the page updates and now the page lists
+        # "2: Constantine" as an item in the "My Favorite Movies list"
 
         # The page updates again, and now shows both movies on their list.
 
