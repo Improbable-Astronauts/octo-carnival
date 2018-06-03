@@ -37,7 +37,8 @@ class NewVisitorTest(LiveServerTestCase):
         # to check out it's homepage
 
         self.browser.get(self.live_server_url + "/movies/")
-
+        time.sleep(2)
+        #
         # The page title and header mention to-do movies
 
         self.assertIn("Movies", self.browser.title)
