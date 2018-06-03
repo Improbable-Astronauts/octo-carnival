@@ -22,6 +22,8 @@
     - Javascript
     - HTML/CSS
     - Postgres
+    - coverage 4.5.1
+    
 
 ## Setting up your development environment for local testing
 
@@ -33,3 +35,8 @@
     - open browser to http://localhost:8000/
     - run all tests with `python manage.py test`
     - run unit tests only with `python manage.py test movies`
+
+    -coverage run manage.py test => currently doesn't add much
+    -BUT run
+    -coverage html --omit="admin.py" 
+    - then checkout the coverage report at htmlcov/index.html
