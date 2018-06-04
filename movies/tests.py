@@ -11,21 +11,21 @@ class HomePageTest(TestCase):
 
     def test_can_save_a_POST_request(self):
 
-        response = self.client.post('/', data={'movie_title': 'A Movie Title'})
+        response = self.client.post('/', data={'imdb_id': 'tt0092099'})
         self.assertEqual(Movie.objects.count(), 1)
         new_movie = Movie.objects.first()
-        self.assertEqual(new_movie.title, 'A Movie Title')
+        self.assertEqual(new_movie.title, 'Top Gun')
 
     def test_redirects_after_POST(self):
 
-        response = self.client.post('/', data={'movie_title': 'A Movie Title'})
+        response = self.client.post('/', data={'imdb_id': 'tt0092099'})
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response['location'], '/')
 
     def test_displays_all_movies(self):
 
-        Movie.objects.create(title='Galaxy Quest')
-        Movie.objects.create(title='Clue')
+        Movie.objects.create(title='Galaxy Quest',imdb_id='tt0177789')
+        Movie.objects.create(title='Clue',imdb_id='tt0088930')
 
         response = self.client.get('/')
 
@@ -41,17 +41,21 @@ class HomePageTest(TestCase):
 class SearchPageTest(TestCase):
 
     def test_uses_search_template(self):
-
         response = self.client.get('/search/')
         self.assertTemplateUsed(response, 'movies/search.html')
 
-    def test_displays_all_search_results(self):
 
-        pass  # add after api calls are working
+    def test_displays_all_search_results(self):
+        response = self.client.post('/search/', {'movie_title':'clue'})
+        self.assertContains(response, 'Clue')
+        self.assertContains(response, 'Without a Clue')
+        self.assertContains(response, 'Get a Clue')
+        self.assertContains(response, 'No Clue')
+
 
     def test_displays_no_results_message_as_needed(self):
+        response = self.client.post('/search/', {'movie_title':'Awesome Adam Sandler Movie'})
 
-        pass  # add after api calls are working
 
     def test_redirects_to_movie_detail_view(self):
 
