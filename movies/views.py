@@ -10,7 +10,11 @@ def index(request):
     """ Creates an HTTP response for requests made to the index route. """
 
     if request.method == 'POST':
-        Movie.objects.create(title=request.POST['movie_title'])
+        movie_dict = omdb.imdbid(request.POST['imdb_id'])
+        #TODO fix this so that movie_dict is passed directly to Movie.objects.create()
+        Movie.objects.create(title=movie_dict['title'],year=movie_dict['year'],
+                        imdb_id=movie_dict['imdb_id'],runtime=movie_dict['runtime'],
+                        rated=movie_dict['rated'],)
         return redirect('/')
     movies = Movie.objects.all()
 
