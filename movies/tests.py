@@ -55,6 +55,7 @@ class SearchPageTest(TestCase):
 
     def test_displays_no_results_message_as_needed(self):
         response = self.client.post('/search/', {'movie_title':'Awesome Adam Sandler Movie'})
+        self.assertContains(response, "No results found. ")
 
 
     def test_redirects_to_movie_detail_view(self):
