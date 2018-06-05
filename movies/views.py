@@ -8,7 +8,7 @@ def index(request):
 
     if request.method == 'POST':
         Movie.objects.create(title=request.POST['movie_title'])
-        return redirect('/movies/')
+        return redirect('/')
 
     movies = Movie.objects.all()
 

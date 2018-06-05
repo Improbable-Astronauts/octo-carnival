@@ -36,7 +36,7 @@ class NewVisitorTest(LiveServerTestCase):
         # Jesse has heard about a movie watch-list app, and goes
         # to check out it's homepage
 
-        self.browser.get(self.live_server_url + "/movies/")
+        self.browser.get(self.live_server_url + "/")
 
         # The page title and header mention to-do movies
 
