@@ -3,6 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import WebDriverException
 import time
+import os
 
 MAX_WAIT = 10
 
@@ -12,6 +13,9 @@ class NewVisitorTest(LiveServerTestCase):
         """ Defines setup operations for the NewVisitorTest class. """
 
         self.browser = webdriver.Firefox()
+        staging_server = os.environ.get('STAGING_SERVER')
+        if staging_server:
+            self.live_server_url = 'http://' + staging_server
 
     def tearDown(self):
         """ Defines tear-down operations for the NewVisitorTest class. """
