@@ -15,9 +15,9 @@ def _get_latest_source():
 
 
 def _update_virtualenv():
-    if not exists('virtualenv/bin/pip'):
-        run(f'python3.6 -m venv virtualenv')
-    run('./virtualenv/bin/pip install -r requirements.txt')
+    if not exists('myvenv/bin/pip'):
+        run(f'python3.6 -m venv myvenv')
+    run('./myvenv/bin/pip install -r requirements.txt')
 
 
 def _create_or_update_dotenv():
@@ -32,11 +32,11 @@ def _create_or_update_dotenv():
 
 
 def _update_static_files():
-    run('./virtualenv/bin/python manage.py collectstatic --noinput')
+    run('./myvenv/bin/python manage.py collectstatic --noinput')
 
 
 def _update_database():
-    run('./virtualenv/bin/python manage.py migrate --noinput')
+    run('./myvenv/bin/python manage.py migrate --noinput')
 
 
 def deploy():
