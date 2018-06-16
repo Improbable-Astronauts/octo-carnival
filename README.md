@@ -77,6 +77,9 @@
     `$ python manage.py migrate`
 - start the server by running:
 
+    `$ export OMDB_API_KEY=1A2B3C4D`
+- set an environment variable for your OMDB_API_KEY. Find out how to get one at http://www.omdbapi.com
+
     `$ python manage.py runserver`
 - open browser to http://localhost:8000/
 - see results for all tests by running
