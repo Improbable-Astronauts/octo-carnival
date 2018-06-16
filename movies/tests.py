@@ -42,7 +42,7 @@ class SearchPageTest(TestCase):
 
     def test_uses_search_template(self):
 
-        response = self.client.get('/search/')
+        response = self.client.get('/search')
         self.assertTemplateUsed(response, 'movies/search.html')
 
     def test_displays_all_search_results(self):
