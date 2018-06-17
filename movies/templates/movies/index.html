@@ -1,26 +1,29 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>My Movies</title>
-</head>
-<body>
 
-    <h1>My Favorite Movies</h1>
+{% extends "movies/base.html" %}
 
-    <h2>Start your list below!</h2>
+{% block title %}
+My Movies
+{% endblock %}
+
+{% block content %}
+
+    
+
+    <h1>Submit a movie title</h1>
 
     <form method="POST" action='/movies/'>
-
-        <input id="id_movie_title" name="movie_title" placeholder="Type a movie title here and press ENTER"/>
+        
+        <input id="id_movie_title" name="movie_title" placeholder="Submit a movie title"/>
         {% csrf_token %}
     </form>
 
+    <h2>My Favorite Movies</h2>
     {% if movie_list %}
         <ul id="id_movies_list">
 
             {% for movie in movie_list %}
 
-                <li>{{ movie.title }}</li>
+                <li class="reel">{{ movie.title }}</li>
 
             {% endfor %}
 
@@ -32,5 +35,4 @@
 
     {% endif %}
 
-</body>
-</html>
+{% endblock %}

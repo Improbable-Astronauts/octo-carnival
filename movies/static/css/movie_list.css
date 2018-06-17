@@ -1,0 +1,32 @@
+body {
+    text-align: center;
+
+    background-image: url('/static/images/image.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    
+    
+    /* list-style-image: ; */
+}
+
+h1 {
+    color: rgb(221, 203, 176);
+}
+ul {
+    /* list-style-image: url('/static/images/noun_785988_cc.png'); */
+    list-style: none;
+}
+
+li {
+    color: rgb(221,203,176);
+}
+
+nav {
+    background-color: rgb(221, 203, 176);
+}
+/* li.reel {
+    list-style-image: url('/static/images/noun_785988_cc.svg');
+} */
+
+
+/* film reel by ProSymbols from the Noun Project */

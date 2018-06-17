@@ -1,4 +1,5 @@
-from django.test import LiveServerTestCase
+# from django.test import LiveServerTestCase
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import WebDriverException
@@ -6,7 +7,7 @@ import time
 
 MAX_WAIT = 10
 
-class NewVisitorTest(LiveServerTestCase):
+class NewVisitorTest(StaticLiveServerTestCase):
 
     def setUp(self):
         """ Defines setup operations for the NewVisitorTest class. """
@@ -41,14 +42,14 @@ class NewVisitorTest(LiveServerTestCase):
         #
         # The page title and header mention to-do movies
 
-        self.assertIn("Movies", self.browser.title)
+        self.assertIn("My Movies", self.browser.title)
         header_text = self.browser.find_element_by_tag_name('h1').text
-        self.assertIn('Movies', header_text)
+        self.assertIn('movie title', header_text)
 
         # Jesse is immediately invited to enter a movie title
 
         inputbox = self.browser.find_element_by_id('id_movie_title')
-        self.assertEqual(inputbox.get_attribute('placeholder'), 'Type a movie title here and press ENTER')
+        self.assertEqual(inputbox.get_attribute('placeholder'), 'Submit a movie title')
 
         # Jesse types "John Wick" into a text box (because it's an awesome movie.)
 
@@ -73,3 +74,18 @@ class NewVisitorTest(LiveServerTestCase):
         self.wait_for_row_in_list_table('Constantine')
 
         # Satisfied, they go back to sleep.
+    def test_layout_and_styling(self):
+        # Jaques is curious to see the home page
+        self.browser.get(self.live_server_url)
+        self.browser.set_window_size(1024, 768)
+
+        # He notices the page is pretty sparse, just adding movies to a list but the form is centerd
+        inputbox = self.browser.find_element_by_id('id_movie_title')
+        self.assertAlmostEqual(
+            inputbox.location['x'] + inputbox.size['width'] / 2,
+            512, delta=10
+        )
+        # He likes the image, it doesn't repeat and takes up the full screen
+
+        # The movies he enters are not bulleted (or bulleted with reels)
+
