@@ -23,7 +23,7 @@ My Movies
 
             {% for movie in movie_list %}
 
-                <li class="reel">{{ movie.title }}</li>
+                <li>{{ movie.title }} ({{ movie.year }}). Running time {{ movie.runtime }}. Rated: {{ movie.rated }} </li>
 
             {% endfor %}
 

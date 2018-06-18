@@ -9,29 +9,24 @@
     <div id="id_movie_results">
 
     {% if movie_results %}
-
+    <form method="post" action="/">
+        {% csrf_token %}
+        <input id="submit_button" type="submit" value="Save Movie">
         <table id="id_movie_table">
         {% for movie in movie_results %}
             <tr>
                 <td>
-                    <a href="/detail/{{movie.imdb_id}}">
-                        <img src="{{ movie.img_url}}">
-                    </a>
+                    <img src="{{ movie.poster}}">
                 </td>
-            </tr>
-            <tr>
                 <td>
-                    <h4>{{movie.title}}</h4>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <h5>Released: {{movie.release_date}}</h5>
+                    <input type="radio" name="imdb_id" id="{{movie.imdb_id}}" value="{{movie.imdb_id}}">{{movie.title}}
+                    <p>Released: {{movie.year}}</p>
                 </td>
             </tr>
         {% endfor %}
         </table>
-
+        
+    </form>
     {% else %}
 
         <p id="id_no_results">No results found. <a href='/'>Search again?</a></p>
