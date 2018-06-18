@@ -1,8 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Movie Search</title>
-</head>
+
+{% extends "movies/base.html" %}
+
+{% block title %}
+My Movies
+{% endblock %}
+
+{% block content %}
 <body>
     <h2>Movie Search Results</h2>
 
@@ -33,5 +36,4 @@
 
     {% endif %}
     </div>
-</body>
-</html>
+{% endblock %}
