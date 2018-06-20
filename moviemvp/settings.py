@@ -80,10 +80,22 @@ WSGI_APPLICATION = 'moviemvp.wsgi.application'
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
 DATABASES = {
+    #local postgres db # setting can be stored in dotenv or hidden, for now I don't care
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        #whatever values you CREATED here
+        'NAME': 'astro', 
+        'USER': 'steve',
+        'PASSWORD': '123123',
+        'HOST': 'localhost',
+        'PORT': '',
     }
+    # even simpler: Below works with whitenoise,a static file server for Python
+    # http://whitenoise.evans.io/en/stable/
+    
+    #  'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     }
 }
 
 
