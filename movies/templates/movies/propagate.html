@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Propagation</title>
+   
+</head>
+
+<body>
+        
+        <form method="post" action="/propagate/">
+                {% csrf_token %}
+                How many random movies do you want to add:
+                <input id="intances_number" name="number_of_movies" type="number" min="1" max="1000">
+                <input type="submit" value="Submit">
+            </form> 
+</body>
+</html>

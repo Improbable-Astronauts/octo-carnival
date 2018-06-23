@@ -5,7 +5,7 @@ class Movie(models.Model):
     """ Defines the class of Movie objects. """
 
     title = models.TextField(default='')
-    year = models.IntegerField(default=1900)
+    year = models.CharField(max_length=10)
     imdb_id = models.TextField(default='')
     runtime = models.TextField(default='')
     rated = models.TextField(default='Unknown')
