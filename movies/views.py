@@ -20,7 +20,7 @@ def index(request):
         new_movie.save()
         print("SAVED")
         return redirect('/')
-    movies = Movie.objects.all()
+    movies = Movie.objects.all().order_by('title')
 
     return render(request, 'movies/index.html', {'movie_list': movies})
 
@@ -40,9 +40,7 @@ def detail(request):
 def propagate(request):
     if request.method == 'POST':
         instances = request.POST['number_of_movies']
-
-        print("%%%%%%%%%" + instances)
         propagate_db(int(instances))
-        movies = Movie.objects.all()
+        movies = Movie.objects.all().order_by('title')
         return render(request, 'movies/index.html', {'movie_list':movies})
     return render(request, 'movies/propagate.html')
