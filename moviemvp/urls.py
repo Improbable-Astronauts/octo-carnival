@@ -17,6 +17,11 @@ from django.contrib import admin
 from django.urls import include, path
 
 urlpatterns = [
-    path('', include('movies.urls')),
+    
+    path('', include('movies.urls', namespace='movies')),
+    # path('movies/', include('movies.urls', namespace='movies')),
     path('admin/', admin.site.urls),
+    
+    ## having two paths with same namespace may pose problems with reverse url function
+   
 ]
