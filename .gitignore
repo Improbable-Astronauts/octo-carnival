@@ -1,3 +1,4 @@
+
 #============= I Usually Put added, personal ignores at bottom after boiler plate ===========================
 
 geckodriver.log
@@ -113,3 +114,4 @@ ENV/
 
 # my tokens and passwords
 hidden.py
+
