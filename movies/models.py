@@ -1,3 +1,4 @@
+from django.urls import reverse
 from django.db import models
 
 
@@ -13,4 +14,8 @@ class Movie(models.Model):
     def __str__(self):
         """ Returns helpful identifiers about a movie object. """
         return self.title
+
+    def get_absolute_url(self):
+        '''returns the correct path to the movie's details'''
+        return reverse('movies:detail', args=[self.imdb_id])
 

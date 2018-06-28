@@ -62,6 +62,23 @@ class SearchPageTest(TestCase):
 
         pass  # add after api calls are working
 
+class DetailPageTest(TestCase):
+
+    def test_uses_detail_template(self):
+
+        response = self.client.get('/')
+        self.assertTemplateUsed(response, 'movies/detail.html')
+
+    def test_shows_movie_length(self):
+        pass
+    
+    def test_displays_movie_poster(self):
+        pass
+    
+    def test_no_poster_display(self):
+        # image not found message?
+        pass
+
 
 class MovieModelTest(TestCase):
 

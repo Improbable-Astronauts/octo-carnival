@@ -1,5 +1,6 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from django.http import HttpResponse, Http404
+
 
 import omdb
 
@@ -29,6 +30,8 @@ def search(request):
     return render(request, 'movies/search.html')
 
 
-def detail(request):
-
-    return HttpResponse("<h1>Movie Detail View</h1>")
+def detail(request, imdb_id):
+    #TODO make imdb_id unique no duplicates in db, hence no multipleObjectReturnedError
+    movie = get_object_or_404(Movie, imdb_id=imdb_id)
+    
+    return render(request, 'movies/detail.html', {'movie':movie})
