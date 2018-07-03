@@ -7,4 +7,15 @@ Movie Detail
 {% block content %}
 <h1>Under construction, just like Portland!</h1>
 <h2>{{ movie.title }}</h2>
+<img src="{{ movie.poster }}">
+<tr>
+        <td>
+            <!-- TODO if not in database different detail display -->
+            <img src="{{ movie.poster }}">
+            
+            <!-- not sure why below not working -->
+            <!-- <a href="{{ movie.get_absolute_url }}"><img src="{{ movie.poster}}"></a> -->
+            <!-- <img src="{{ movie.poster }}"> -->
+        </td>
+
 {% endblock %}

@@ -23,7 +23,7 @@ My Movies
                     <a href="{{movie.imdb_id}}"><img src="{{ movie.poster }}"</a>
                     <!-- not sure why below not working -->
                     <!-- <a href="{{ movie.get_absolute_url }}"><img src="{{ movie.poster}}"></a> -->
-                    <img src="{{ movie.poster }}">
+                    <!-- <img src="{{ movie.poster }}"> -->
                 </td>
                 <td>
                     <input type="radio" name="imdb_id" id="{{movie.imdb_id}}" value="{{movie.imdb_id}}">{{movie.title}}

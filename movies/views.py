@@ -32,6 +32,17 @@ def search(request):
 
 def detail(request, imdb_id):
     #TODO make imdb_id unique no duplicates in db, hence no multipleObjectReturnedError
-    movie = get_object_or_404(Movie, imdb_id=imdb_id)
+    try:
+        # check db
+        movie = get_object_or_404(Movie, imdb_id=imdb_id)
+    
+    except Http404:
+        # if not in db but selected by poster, save to db and continue
+        movie_dict = omdb.imdbid(imdb_id)
+       
+        Movie.objects.create(title=movie_dict['title'],year=movie_dict['year'],
+                        imdb_id=movie_dict['imdb_id'],runtime=movie_dict['runtime'],
+                        rated=movie_dict['rated'],)
+        movie = get_object_or_404(Movie, imdb_id=imdb_id)
     
     return render(request, 'movies/detail.html', {'movie':movie})
