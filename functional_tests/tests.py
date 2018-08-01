@@ -104,7 +104,7 @@ class NewVisitorTest(StaticLiveServerTestCase):
 
         # The page updates again, and now shows both movies on their list.
 
-        self.wait_for_row_in_list_table('Constantine (2005). Running time 121 min. Rated: R')
+        self.wait_for_row_in_list_table('Constantine (2005). Running time 132 min. Rated: R')
 
         # Satisfied, they go back to sleep.
     def test_layout_and_styling(self):

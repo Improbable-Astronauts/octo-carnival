@@ -1,5 +1,8 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from django.http import HttpResponse, Http404
+from django.views.generic import (
+    DetailView,
+)
 
 
 import omdb
@@ -15,7 +18,7 @@ def index(request):
         #TODO fix this so that movie_dict is passed directly to Movie.objects.create()
         Movie.objects.create(title=movie_dict['title'],year=movie_dict['year'],
                         imdb_id=movie_dict['imdb_id'],runtime=movie_dict['runtime'],
-                        rated=movie_dict['rated'],)
+                        rated=movie_dict['rated'],poster=movie_dict['poster'],)
         return redirect('/')
     movies = Movie.objects.all()
 
@@ -42,7 +45,13 @@ def detail(request, imdb_id):
        
         Movie.objects.create(title=movie_dict['title'],year=movie_dict['year'],
                         imdb_id=movie_dict['imdb_id'],runtime=movie_dict['runtime'],
-                        rated=movie_dict['rated'],)
+                        rated=movie_dict['rated'],poster=movie_dict['poster'],)
         movie = get_object_or_404(Movie, imdb_id=imdb_id)
     
     return render(request, 'movies/detail.html', {'movie':movie})
+
+
+class MovieDetailView(DetailView):
+    fields = ("title", "year", "imdb_id", "runtime", "rated", "poster")
+    model = Movie
+    template_name = "movies/detail.html"

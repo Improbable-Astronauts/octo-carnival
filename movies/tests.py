@@ -66,7 +66,7 @@ class DetailPageTest(TestCase):
 
     def test_uses_detail_template(self):
 
-        response = self.client.get('/')
+        response = self.client.get('/tt0073195')
         self.assertTemplateUsed(response, 'movies/detail.html')
 
     def test_shows_movie_length(self):
