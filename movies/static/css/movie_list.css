@@ -12,8 +12,22 @@ body {
 h1 {
     color: rgb(221, 203, 176);
 }
+
+ul.messages {
+    /* color:green; */
+    /* background-color: yellow; */
+    
+}
+li.warning {
+    font-size: 3rem;
+    color: red;
+    
+}
+
+
+
 ul {
-    /* list-style-image: url('/static/images/noun_785988_cc.png'); */
+    
     list-style: none;
 }
 
