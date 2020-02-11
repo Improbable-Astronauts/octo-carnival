@@ -1,4 +1,4 @@
-Django==2.0.5
+Django==2.2.10
 pytz==2018.4
 omdb==0.10.0
 psycopg2==2.7.4
